@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>codedamn Project</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <!-- start writing your code -->
+    <main>
+    <div class="todoAppContainer">
+        <h1 class="heading"> ADD TODO LIST</h1>
+        <div class="addTasksDiv">
+            <input type="text" id="addTaskTextbox" placeholder="Add Tasks...">
+            <button id="addATaskBtn"><img src="assets/icons/addSymbol.png" /></i></button>
+            <button id="clearTextboxBtn"><img src="assets/icons/clearIcon.png" /></button>
+        </div>
+    </div>
+    <div class="container">
+
+    </div>
+     </main>
+    <script>
+let textBox=document.querySelector("#addTaskTextbox");
+let addATaskBtn=document.querySelector("#addATaskBtn");
+let clearTextBtn=document.querySelector("#clearTextboxBtn");
+let container=document.querySelector(".container");
+
+let editTask=document.querySelector("#editTask");
+let deleteTask=document.querySelector("#deleteTask");
+let successful=document.querySelector("#successful");
+let completedTaskBool=false;
+
+addATaskBtn.addEventListener('click',addATask);
+
+clearTextBtn.addEventListener('click',()=>{
+    textBox.value="";
+})
+function addATask(e){
+   if(textBox.value==""){
+    alert('Please enter some text to add');
+   } else
+   {
+    //div
+    const div=document.createElement('div');
+    div.classList.add("task");
+    //p tag
+    const p=document.createElement('p');
+    p.setAttribute('contenteditable','fasle');
+    p.setAttribute('class','taskName');
+    div.append(p);
+    //span for all buttons
+    const span=document.createElement('span');
+    span.setAttribute('class','taskButtons');
+    div.append(span);
+    //all buttons
+    //edit button
+    const editBtn=document.createElement('button');
+    editBtn.setAttribute('id','editTask');
+    editBtn.setAttribute('tooltip','click to EDIT');
+    editBtn.addEventListener('click',editTaskFn);
+    editBtn.innerHTML='<img src="assets/icons/editIcon.png" />';
+    //delete button
+    const deleteBtn=document.createElement('button');
+    deleteBtn.setAttribute('id','deleteTask');
+    deleteBtn.addEventListener('click',deleteTaskfn);
+    deleteBtn.innerHTML='<img src="assets/icons/deleteIcon.png" />';
+    //complete button
+    const completeBtn=document.createElement('button');
+    completeBtn.setAttribute('id','completeTask');
+    completeBtn.addEventListener('click',completeTaskFn);
+    completeBtn.innerHTML='<img src="assets/icons/tickIcon.png" />';
+
+    container.appendChild(div);
+    span.append(completeBtn,editBtn,deleteBtn);
+
+    p.innerHTML=textBox.value
+    textBox.value="";
+
+   }
+}
+
+function deleteTaskfn(e){
+    const item = e.target.parentElement.parentElement;
+       console.log(item)
+    console.log(item.parentElement);
+    item.parentElement.remove();
+}
+function editTaskFn(e){
+    const item = e.target.parentElement.parentElement.parentElement;
+    const text = item.querySelector('p');
+    text.setAttribute('contenteditable','True');
+    text.classList.add("editingMode");
+    text.focus();  
+}
+
+function completeTaskFn(e){
+
+// console.log(e);
+if(!completedTaskBool){
+    const item = e.target.parentElement.parentElement.parentElement;
+    const text = item.querySelector('p');
+    text.setAttribute(
+   "style", "text-decoration: line-through;");
+   text.classList.add("completed");
+   completedTaskBool=!completedTaskBool;
+    
+}else{
+    const item = e.target.parentElement.parentElement.parentElement;
+    const text = item.querySelector('p');
+    text.setAttribute(
+   "style", "text-decoration: none;");
+   text.classList.remove("completed");
+   completedTaskBool=!completedTaskBool;
+}
+}
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,150 @@
+*{
+    box-sizing: border-box;
+}
+/* Poppins, sans-serif */
+
+.todoAppContainer
+{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items:center;
+}
+main
+{
+    height:100vh;
+    width:100vw;
+    background:linear-gradient(127deg,rgba(236, 44, 44,0.9),rgba(233, 153, 61,0.9));
+    text-align:center;
+}
+.todoAppContainer .heading
+{
+    font-size:40px;
+    font-family: "Poppins, sans-serif";
+    position: relative;
+    margin-bottom: 2rem;
+    color:white;
+}
+.todoAppContainer .heading::before
+{
+    content : "";
+    position: absolute;
+    left    : 50%;
+    transform: translate(-50%,0);
+    bottom  : -5px;
+    height  : 3px;
+    width   : 50px;  /* or 100px */
+    border-bottom:4px solid white;
+}
+.addTasksDiv
+{
+    display:flex;
+    /* background:green; */
+    height:40px;
+    width:100%;
+    justify-content: center;
+    align-items:center;
+    margin-bottom: 2.5rem;
+}
+
+#addTaskTextbox,#addATaskBtn,#clearTextboxBtn
+{
+    height: inherit;
+    
+    
+}
+#addTaskTextbox
+{
+   width:300px;
+    padding:5px;
+}
+#addTaskTextbox:focus
+{
+    /* outline:none; */
+    outline-color:#5d5a68;
+
+
+}
+#addATaskBtn
+{
+    width:40px;
+    padding:0;
+    margin:0;
+    background:#e9993d;
+    cursor: pointer;
+    border:none;
+}
+img{
+    height: 25px;
+    width:25px;
+   
+}
+#deleteTask{
+    background:#ec2c2c;
+    cursor: pointer;
+    border:none;
+}
+#editTask{
+    background:rgb(111, 111, 235);
+    cursor: pointer;
+    border:none;
+}
+#completeTask{
+    background:rgb(87, 219, 87);
+    cursor: pointer;
+    border:none;
+}
+#clearTextboxBtn
+{
+    width:40px;
+    padding:0;
+    margin:0;
+    background:#ec2c2c;
+    cursor: pointer;
+    border:none;
+}
+.container
+{
+    height: fit-content;
+    width:100%;
+    /* background-color: yellow; */
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+}
+.container .task
+{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+     /* overflow:scroll; */
+    /* overflow-x: hidden; */
+}
+.taskName
+{
+    width:250px;
+    /* border:1px red solid; */
+    padding:5px;
+    height:40px;
+    background:white;
+    /* overflow:scroll;
+    overflow-x: hidden; */
+}
+.taskName :focus
+{
+    border: #e9993d;
+
+}
+.taskName.completed
+{
+background:rgba(233, 153, 61,0.6);
+}
+.taskButtons
+{
+    display:flex;
+}
+.taskButtons button{
+    width:40px;
+    height:40px;
+}
